@@ -1,159 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>MS Uma Tiles and Sanitary - Best Tiles & Sanitary Shop in Agartala</title>
-    <meta name="description" content="MS Uma Tiles and Sanitary - Best tiles and sanitary shop in Agartala. Floor tiles, wall tiles, bathroom tiles at best price in Tripura. Contact us today.">
-    <meta name="keywords" content="Tiles Shop in Agartala, Best Tiles in Tripura, Floor Tiles Agartala, MS Uma Tiles">
-    <meta name="author" content="MS Uma Tiles">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            scroll-behavior: smooth;
-        }
+<title>MS Uma Tiles And Sanitary| Best Tiles Shop in Agartala</title>
+<meta name="description" content="MS Uma Tiles And Sanitary- Premium floor and wall tiles shop in Agartala, Tripura. Best quality tiles at affordable price.">
+<meta name="keywords" content="Tiles shop in Agartala, Best tiles in Tripura, Floor tiles Agartala, MS Uma Tiles">
 
-        /* Loader */
-        #loader {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #ddd;
-            border-top: 5px solid #e63946;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
+body{
+    background:#f5f6fa;
+    color:#333;
+}
 
-        header {
-            background: #e63946;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+/* Loader */
+#loader{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
 
-        nav {
-            background: #333;
-            text-align: center;
-            padding: 10px;
-        }
+.spinner{
+    width:50px;
+    height:50px;
+    border:5px solid #ddd;
+    border-top:5px solid #c0392b;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
 
-        nav a {
-            color: white;
-            margin: 15px;
-            text-decoration: none;
-        }
+@keyframes spin{
+    100%{transform:rotate(360deg);}
+}
 
-        section {
-            padding: 50px 20px;
-            text-align: center;
-        }
+/* Navbar */
+nav{
+    background:#111;
+    padding:15px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-        .btn {
-            background: #e63946;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+nav h2{
+    color:#fff;
+    font-weight:600;
+}
 
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:400;
+    transition:0.3s;
+}
 
-        input, textarea {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-        }
+nav a:hover{
+    color:#e74c3c;
+}
 
-        button {
-            padding: 10px 20px;
-            background: #e63946;
-            color: white;
-            border: none;
-        }
-    </style>
+/* Hero */
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1582582429416-0a4e28a8c66b') center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.btn{
+    background:#e74c3c;
+    padding:12px 25px;
+    color:#fff;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#c0392b;
+}
+
+/* Sections */
+section{
+    padding:80px 10%;
+    text-align:center;
+}
+
+.section-title{
+    font-size:32px;
+    margin-bottom:40px;
+}
+
+/* Cards */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+/* Contact */
+form{
+    max-width:500px;
+    margin:auto;
+}
+
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+button{
+    background:#e74c3c;
+    color:#fff;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#c0392b;
+}
+
+/* Footer */
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- Loader -->
 <div id="loader">
     <div class="spinner"></div>
 </div>
 
-<header>
-    <h1>MS Uma Tiles and Sanitary</h1>
-    <p>Best Tiles & Sanitary Shop in Agartala, Tripura</p>
-</header>
-
 <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#products">Products</a>
-    <a href="#contact">Contact</a>
+    <h2>MS Uma Tiles</h2>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+    </div>
 </nav>
 
-<section id="home">
-    <h2>Premium Floor & Wall Tiles in Agartala</h2>
-    <p>We provide high-quality tiles and water sanitary at affordable prices.</p>
-    <a href="#contact" class="btn">Contact Now</a>
-</section>
-
-<section id="about">
-    <h2>About Us</h2>
-    <p>MS Uma Tiles and sanitary is one of the leading tiles and water supplier shop in Agartala,Tripura offering premium quality tiles and hardware items for homes and commercial projects.</p>
-</section>
+<div class="hero" id="home">
+    <div>
+        <h1>Premium Tiles in Agartala</h1>
+        <p>Transform your home with high-quality floor & wall tiles</p>
+        <a href="#contact" class="btn">Get Quote</a>
+    </div>
+</div>
 
 <section id="products">
-    <h2>Our Products</h2>
-    <p>✔ Floor Tiles<br>
-       ✔ Wall Tiles<br>
-       ✔ Bathroom Tiles<br>
-       ✔ Kitchen Tiles</p>
+    <h2 class="section-title">Our Tile Collection</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Floor Tiles</h3>
+            <p>Durable and stylish flooring solutions for your home.</p>
+        </div>
+        <div class="card">
+            <h3>Wall Tiles</h3>
+            <p>Elegant wall tiles for kitchen and living spaces.</p>
+        </div>
+        <div class="card">
+            <h3>Bathroom Tiles</h3>
+            <p>Water-resistant and modern bathroom collections.</p>
+        </div>
+    </div>
 </section>
 
 <section id="contact">
-    <h2>Contact Us</h2>
-    <p>📍 Agartala, Tripura<br>
-       📞 +91-9862011506<br>
-       📧 msumatilesandsanitary@email.com</p>
-
+    <h2 class="section-title">Contact MS Uma Tiles And Sanitary</h2>
     <form action="https://formsubmit.co/your-email@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="email" name="email" placeholder="Your Email" required><br>
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea><br>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
     </form>
 </section>
 
 <footer>
-    <p>© 2026 MS Uma Tiles and sanitary- All Rights Reserved</p>
+    <p>© 2026 MS Uma Tiles And Sanitary| Best Tiles Shop in Agartala, Tripura</p>
 </footer>
 
 <script>
-    window.onload = function(){
-        document.getElementById("loader").style.display = "none";
-    }
+window.onload = function(){
+    document.getElementById("loader").style.display="none";
+}
 </script>
 
 </body>
