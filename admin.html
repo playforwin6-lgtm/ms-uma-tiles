@@ -1,3 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - MS Uma Tiles</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  padding:40px;
+  background:#f4f6f9;
+}
+
+h2{
+  margin-bottom:20px;
+}
+
+input{
+  display:block;
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  padding:12px 25px;
+  background:#e53935;
+  color:#fff;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+button:hover{
+  background:#c62828;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Add Product</h2>
+
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="image" placeholder="Image URL">
+
+<button type="button" onclick="addProduct()">Add Product</button>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -15,26 +68,36 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 window.addProduct = async function(){
-  const name = document.getElementById("name").value;
-  const price = document.getElementById("price").value;
-  const image = document.getElementById("image").value;
+
+  const name = document.getElementById("name").value.trim();
+  const price = document.getElementById("price").value.trim();
+  const image = document.getElementById("image").value.trim();
 
   if(!name || !price || !image){
-    alert("Please fill all fields");
+    alert("Please fill all fields!");
     return;
   }
 
-  await addDoc(collection(db, "products"), {
-    name: name,
-    price: price,
-    image: image,
-    createdAt: new Date()
-  });
+  try{
+    await addDoc(collection(db, "products"), {
+      name: name,
+      price: price,
+      image: image,
+      createdAt: new Date()
+    });
 
-  alert("Product Added Successfully!");
+    alert("Product Added Successfully!");
 
-  document.getElementById("name").value = "";
-  document.getElementById("price").value = "";
-  document.getElementById("image").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("image").value = "";
+
+  }catch(error){
+    alert("Error adding product. Check console.");
+    console.error(error);
+  }
 }
 </script>
+
+</body>
+</html>
