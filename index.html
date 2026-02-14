@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MS Uma Tiles And Sanitary| Premium Tiles Showroom in Agartala</title>
-<meta name="description" content="MS Uma Tiles And Sanitary- Water sanitary, wall & bathroom tiles showroom in Agartala, Tripura. Best quality tiles at affordable price.">
+<title>MS Uma Tiles And Sanitary | Premium Showroom in Agartala</title>
+<meta name="description" content="MS Uma Tiles And Sanitary - Water sanitary, PVC pipes, motors, wall & bathroom tiles showroom in Agartala, Tripura.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -17,13 +17,18 @@
     font-family:'Poppins',sans-serif;
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
     background:#f4f6f9;
     color:#333;
+}
+
+/* Universal Image Fix */
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
 }
 
 /* Loader */
@@ -51,7 +56,7 @@ body{
     100%{transform:rotate(360deg);}
 }
 
-/* Sticky Navbar */
+/* Navbar */
 nav{
     position:sticky;
     top:0;
@@ -63,24 +68,20 @@ nav{
     z-index:1000;
 }
 
-nav h2{
-    color:#fff;
-}
+nav h2{color:#fff;}
 
 nav a{
     color:#fff;
     text-decoration:none;
     margin-left:20px;
-    transition:0.3s;
 }
 
-nav a:hover{
-    color:#e53935;
-}
+nav a:hover{color:#e53935;}
 
-/* Hero Section */
+/* Hero */
 .hero{
-    height:95vh;
+    min-height:90vh;
+    padding:60px 20px;
     background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
     url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover;
     display:flex;
@@ -91,14 +92,13 @@ nav a:hover{
 }
 
 .hero h1{
-    font-size:55px;
-    animation:fadeUp 1.2s ease;
+    font-size:clamp(26px,6vw,55px);
+    line-height:1.3;
 }
 
 .hero p{
     margin:20px 0;
-    font-size:18px;
-    animation:fadeUp 1.6s ease;
+    font-size:clamp(14px,3.5vw,18px);
 }
 
 .btn{
@@ -107,27 +107,17 @@ nav a:hover{
     color:#fff;
     border-radius:30px;
     text-decoration:none;
-    transition:0.3s;
-}
-
-.btn:hover{
-    background:#b71c1c;
-}
-
-@keyframes fadeUp{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
 }
 
 /* Sections */
 section{
-    padding:90px 8%;
-    text-align:center;
+    padding:70px 8%;
 }
 
 .section-title{
-    font-size:36px;
-    margin-bottom:50px;
+    text-align:center;
+    font-size:clamp(22px,4vw,36px);
+    margin-bottom:40px;
 }
 
 /* Gallery */
@@ -138,14 +128,17 @@ section{
 }
 
 .gallery img{
-    width:100%;
     border-radius:15px;
     box-shadow:0 8px 25px rgba(0,0,0,0.15);
-    transition:0.4s;
 }
 
-.gallery img:hover{
-    transform:scale(1.05);
+/* Content Text */
+.content-box{
+    margin-top:50px;
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.8;
 }
 
 /* Contact */
@@ -154,7 +147,7 @@ form{
     margin:auto;
 }
 
-input, textarea{
+input,textarea{
     width:100%;
     padding:12px;
     margin-bottom:15px;
@@ -171,34 +164,24 @@ button{
     cursor:pointer;
 }
 
-button:hover{
-    background:#b71c1c;
-}
-
-/* Google Map */
+/* Map */
 .map{
-    margin-top:50px;
+    margin-top:40px;
     border-radius:15px;
     overflow:hidden;
 }
 
-/* WhatsApp Floating */
+/* WhatsApp */
 .whatsapp{
     position:fixed;
     bottom:20px;
     right:20px;
     background:#25D366;
     color:white;
+    font-size:22px;
     padding:15px;
     border-radius:50%;
-    font-size:22px;
     text-decoration:none;
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
-    transition:0.3s;
-}
-
-.whatsapp:hover{
-    transform:scale(1.1);
 }
 
 /* Footer */
@@ -213,62 +196,50 @@ footer{
 
 <body>
 
-<div id="loader">
-    <div class="spinner"></div>
-</div>
+<div id="loader"><div class="spinner"></div></div>
 
 <nav>
     <h2>MS Uma Tiles And Sanitary</h2>
     <div>
         <a href="#home">Home</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#products">Products</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
 
 <div class="hero" id="home">
     <div>
-        <h1>water sanitary Showroom in Agartala</h1>
-        <p>water sanitary • Wall • Bathroom Tiles</p>
+        <h1>Water Sanitary & Tiles Showroom in Agartala</h1>
+        <p>PVC Pipes • Water Motors • Bathroom Fittings • Premium Tiles</p>
         <a href="#contact" class="btn">Get Quote</a>
     </div>
 </div>
 
 <section id="products">
-    <h2 class="section-title">Tiles & Water Sanitary Collection</h2>
+    <h2 class="section-title">Our Collection</h2>
 
     <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1582582494700-59cbd9b6a60e" alt="Premium Floor Tiles">
-        <img src="https://images.unsplash.com/photo-1598300053653-1a1c3c0b0e6d" alt="Modern Wall Tiles">
         <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4" alt="Water Taps">
         <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115" alt="Bathroom Sanitary">
+        <img src="https://images.unsplash.com/photo-1582582494700-59cbd9b6a60e" alt="Floor Tiles">
+        <img src="https://images.unsplash.com/photo-1598300053653-1a1c3c0b0e6d" alt="Wall Tiles">
     </div>
 
-    <div style="margin-top:50px; max-width:900px; margin-left:auto; margin-right:auto; text-align:left; line-height:1.8;">
-        <h3>Water & Sanitary Supplier in Agartala</h3>
+    <div class="content-box">
+        <h3>Authorized Dealers</h3>
         <p>
-            MS Uma Tiles is not only a premium tiles showroom but also a trusted 
-            water and sanitary supplier in Agartala, Tripura. We provide high-quality 
-            water motors, PVC pipes, CP fittings, taps, bathroom sanitary fittings, 
-            and plumbing materials at competitive prices.
-        </p>
-
-        <h3>Authorized Dealership</h3>
-        <p>
-            We are proud authorized dealers of leading brands like 
-            Prince, Parin Pipes and fittings,Pushpa,Kirloskar,P4,etc. 
-            Our dealership ensures original products, warranty support, 
-            and best wholesale & retail pricing in Agartala.
+        We are authorized dealers of leading brands including 
+        Prince Pipes, Parin Pipes & Fittings, Pushpa, Kirloskar and more.
+        We provide genuine products with warranty support in Agartala.
         </p>
 
         <h3>Available Products</h3>
         <ul>
-            <li>✔ Floor & Wall Tiles</li>
-            <li>✔ Bathroom Tiles</li>
-            <li>✔ Water Motors & Pumps</li>
             <li>✔ PVC & CPVC Pipes</li>
+            <li>✔ Water Motors & Pumps</li>
             <li>✔ Taps & Faucets</li>
             <li>✔ Bathroom Sanitary Fittings</li>
+            <li>✔ Wall & Floor Tiles</li>
         </ul>
     </div>
 </section>
@@ -285,19 +256,19 @@ footer{
 
     <div class="map">
         <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.8179883679495!2d91.28196547605278!3d23.825070485904206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3753f5016f1e2d29%3A0x5ad2d4b8a6d62382!2sM%2FS%20UMA%20TILES%20%26%20SANITARY!5e0!3m2!1sen!2sin!4v1770998742867!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </iframe>
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.8179883679495!2d91.28196547605278!3d23.825070485904206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3753f5016f1e2d29%3A0x5ad2d4b8a6d62382!2sM%2FS%20UMA%20TILES%20%26%20SANITARY!5e0!3m2!1sen!2sin!4v1770998742867!5m2!1sen!2sin"
+        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 </section>
 
 <footer>
-    © 2026 MS Uma Tiles And Sanitary| Premium Tiles Showroom in Agartala, Tripura
+© 2026 MS Uma Tiles And Sanitary | Agartala, Tripura
 </footer>
 
-<a href="https://wa.me/+919862011506" class="whatsapp" target="_blank">💬</a>
+<a href="https://wa.me/919862011506" class="whatsapp" target="_blank">💬</a>
 
 <script>
-window.onload = function(){
+window.onload=function(){
     document.getElementById("loader").style.display="none";
 }
 </script>
