@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin - Add Product</title>
+<style>
+body{font-family:Poppins;padding:40px;background:#f4f6f9;}
+input{display:block;width:100%;padding:10px;margin-bottom:15px;}
+button{padding:10px 20px;background:#e53935;color:#fff;border:none;}
+</style>
+</head>
+
+<body>
+
+<h2>Add Product</h2>
+
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="image" placeholder="Image URL">
+<button onclick="addProduct()">Add Product</button>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDl2itMcZuynH-oIS0Jn_fDnMSd-ZdP-So",
+    authDomain: "ms-uma-tiles.firebaseapp.com",
+    projectId: "ms-uma-tiles",
+    storageBucket: "ms-uma-tiles.firebasestorage.app",
+    messagingSenderId: "103744240101",
+    appId: "1:103744240101:web:785e968d6904f79731970c"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+
+</body>
+</html>
