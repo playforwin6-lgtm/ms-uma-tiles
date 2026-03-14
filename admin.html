@@ -10,31 +10,31 @@
 <style>
 
 body{
-font-family: Arial;
+font-family:Arial;
 background:#f4f6f9;
 padding:40px;
 }
 
-.container{
-max-width:600px;
+.box{
+max-width:500px;
 margin:auto;
 background:white;
 padding:30px;
 border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
 
-h1{
+h2{
 text-align:center;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
-input{
+input,select{
 width:100%;
 padding:12px;
 margin-bottom:15px;
-border-radius:6px;
 border:1px solid #ccc;
+border-radius:6px;
 }
 
 button{
@@ -45,7 +45,6 @@ color:white;
 border:none;
 border-radius:25px;
 cursor:pointer;
-font-size:16px;
 }
 
 button:hover{
@@ -58,9 +57,21 @@ background:#b71c1c;
 
 <body>
 
-<div class="container">
+<div class="box" id="loginBox">
 
-<h1>Admin Panel</h1>
+<h2>Admin Login</h2>
+
+<input id="adminEmail" placeholder="Email">
+<input id="adminPassword" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+
+<div class="box" id="adminPanel" style="display:none">
+
+<h2>Add Product</h2>
 
 <input id="name" placeholder="Product Name">
 
@@ -68,17 +79,33 @@ background:#b71c1c;
 
 <input id="image" placeholder="Image URL">
 
+<select id="category">
+
+<option value="Tiles">Tiles</option>
+<option value="Pipes">Pipes</option>
+<option value="Motors">Water Motors</option>
+<option value="Taps">Taps</option>
+
+</select>
+
 <button onclick="addProduct()">Add Product</button>
 
 </div>
 
+
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+import { getFirestore, collection, addDoc } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+import { getAuth, signInWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDl2itMcZuynH-oIS0Jn_fDnMSd-ZdP-So",
+apiKey: "AIzaSyDl2itMcZuynH-oIS0Jn_fDnMSd-ZdP-So",
     authDomain: "ms-uma-tiles.firebaseapp.com",
     projectId: "ms-uma-tiles",
     storageBucket: "ms-uma-tiles.firebasestorage.app",
@@ -86,25 +113,71 @@ const firebaseConfig = {
     appId: "1:103744240101:web:785e968d6904f79731970c"
 };
 
+
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
+
+const auth = getAuth(app);
+
+
+
+window.login = function(){
+
+const email = document.getElementById("adminEmail").value;
+
+const password = document.getElementById("adminPassword").value;
+
+signInWithEmailAndPassword(auth,email,password)
+
+.then(()=>{
+
+document.getElementById("loginBox").style.display="none";
+
+document.getElementById("adminPanel").style.display="block";
+
+})
+
+.catch(()=>{
+
+alert("Wrong Login");
+
+});
+
+}
+
+
 
 window.addProduct = async function(){
 
 const name = document.getElementById("name").value;
+
 const price = document.getElementById("price").value;
+
 const image = document.getElementById("image").value;
 
+const category = document.getElementById("category").value;
+
+
 if(!name || !price || !image){
+
 alert("Fill all fields");
+
 return;
+
 }
 
+
 await addDoc(collection(db,"products"),{
+
 name:name,
 price:price,
-image:image
+image:image,
+category:category,
+date:new Date()
+
 });
+
 
 alert("Product Added Successfully");
 
