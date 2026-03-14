@@ -1,57 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel - MS Uma Tiles</title>
+
+<title>MS Uma Tiles Admin</title>
 
 <style>
+
 body{
-  font-family: Arial, sans-serif;
-  padding:40px;
-  background:#f4f6f9;
+font-family: Arial;
+background:#f4f6f9;
+padding:40px;
 }
 
-h2{
-  margin-bottom:20px;
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
 }
 
 input{
-  display:block;
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border-radius:8px;
-  border:1px solid #ccc;
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
 button{
-  padding:12px 25px;
-  background:#e53935;
-  color:#fff;
-  border:none;
-  border-radius:25px;
-  cursor:pointer;
-  font-size:16px;
+width:100%;
+padding:12px;
+background:#d32f2f;
+color:white;
+border:none;
+border-radius:25px;
+cursor:pointer;
+font-size:16px;
 }
 
 button:hover{
-  background:#c62828;
+background:#b71c1c;
 }
+
 </style>
+
 </head>
 
 <body>
 
-<h2>Add Product</h2>
+<div class="container">
+
+<h1>Admin Panel</h1>
 
 <input id="name" placeholder="Product Name">
+
 <input id="price" placeholder="Price">
+
 <input id="image" placeholder="Image URL">
 
-<button type="button" onclick="addProduct()">Add Product</button>
+<button onclick="addProduct()">Add Product</button>
+
+</div>
 
 <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -62,41 +84,32 @@ const firebaseConfig = {
     storageBucket: "ms-uma-tiles.firebasestorage.app",
     messagingSenderId: "103744240101",
     appId: "1:103744240101:web:785e968d6904f79731970c"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 window.addProduct = async function(){
 
-  const name = document.getElementById("name").value.trim();
-  const price = document.getElementById("price").value.trim();
-  const image = document.getElementById("image").value.trim();
+const name = document.getElementById("name").value;
+const price = document.getElementById("price").value;
+const image = document.getElementById("image").value;
 
-  if(!name || !price || !image){
-    alert("Please fill all fields!");
-    return;
-  }
-
-  try{
-    await addDoc(collection(db, "products"), {
-      name: name,
-      price: price,
-      image: image,
-      createdAt: new Date()
-    });
-
-    alert("Product Added Successfully!");
-
-    document.getElementById("name").value = "";
-    document.getElementById("price").value = "";
-    document.getElementById("image").value = "";
-
-  }catch(error){
-    alert("Error adding product. Check console.");
-    console.error(error);
-  }
+if(!name || !price || !image){
+alert("Fill all fields");
+return;
 }
+
+await addDoc(collection(db,"products"),{
+name:name,
+price:price,
+image:image
+});
+
+alert("Product Added Successfully");
+
+}
+
 </script>
 
 </body>
