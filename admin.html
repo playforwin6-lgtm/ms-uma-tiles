@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>MS Uma Tiles Admin</title>
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <style>
 
 body{
-font-family:Arial;
+font-family:Poppins;
 background:#f4f6f9;
 padding:40px;
 }
@@ -24,11 +23,6 @@ border-radius:10px;
 box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
 
-h2{
-text-align:center;
-margin-bottom:20px;
-}
-
 input,select{
 width:100%;
 padding:12px;
@@ -38,17 +32,13 @@ border-radius:6px;
 }
 
 button{
-width:100%;
 padding:12px;
+width:100%;
 background:#d32f2f;
 color:white;
 border:none;
-border-radius:25px;
+border-radius:20px;
 cursor:pointer;
-}
-
-button:hover{
-background:#b71c1c;
 }
 
 </style>
@@ -61,8 +51,9 @@ background:#b71c1c;
 
 <h2>Admin Login</h2>
 
-<input id="adminEmail" placeholder="Email">
-<input id="adminPassword" type="password" placeholder="Password">
+<input id="email" placeholder="Email">
+
+<input id="password" type="password" placeholder="Password">
 
 <button onclick="login()">Login</button>
 
@@ -83,7 +74,7 @@ background:#b71c1c;
 
 <option value="Tiles">Tiles</option>
 <option value="Pipes">Pipes</option>
-<option value="Motors">Water Motors</option>
+<option value="Motors">Motors</option>
 <option value="Taps">Taps</option>
 
 </select>
@@ -95,54 +86,36 @@ background:#b71c1c;
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { db, auth } from "./firebase.js";
 
-import { getFirestore, collection, addDoc } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-import { getAuth, signInWithEmailAndPassword } 
+import { signInWithEmailAndPassword }
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-
-const firebaseConfig = {
-apiKey: "AIzaSyDl2itMcZuynH-oIS0Jn_fDnMSd-ZdP-So",
-    authDomain: "ms-uma-tiles.firebaseapp.com",
-    projectId: "ms-uma-tiles",
-    storageBucket: "ms-uma-tiles.firebasestorage.app",
-    messagingSenderId: "103744240101",
-    appId: "1:103744240101:web:785e968d6904f79731970c"
-};
+import { addDoc, collection }
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 
-const app = initializeApp(firebaseConfig);
+window.login = async function(){
 
-const db = getFirestore(app);
+const email=document.getElementById("email").value;
 
-const auth = getAuth(app);
+const password=document.getElementById("password").value;
 
+try{
 
-
-window.login = function(){
-
-const email = document.getElementById("adminEmail").value;
-
-const password = document.getElementById("adminPassword").value;
-
-signInWithEmailAndPassword(auth,email,password)
-
-.then(()=>{
+await signInWithEmailAndPassword(auth,email,password);
 
 document.getElementById("loginBox").style.display="none";
 
 document.getElementById("adminPanel").style.display="block";
 
-})
+}
 
-.catch(()=>{
+catch{
 
-alert("Wrong Login");
+alert("Wrong login");
 
-});
+}
 
 }
 
@@ -150,22 +123,13 @@ alert("Wrong Login");
 
 window.addProduct = async function(){
 
-const name = document.getElementById("name").value;
+const name=document.getElementById("name").value;
 
-const price = document.getElementById("price").value;
+const price=document.getElementById("price").value;
 
-const image = document.getElementById("image").value;
+const image=document.getElementById("image").value;
 
-const category = document.getElementById("category").value;
-
-
-if(!name || !price || !image){
-
-alert("Fill all fields");
-
-return;
-
-}
+const category=document.getElementById("category").value;
 
 
 await addDoc(collection(db,"products"),{
@@ -173,11 +137,9 @@ await addDoc(collection(db,"products"),{
 name:name,
 price:price,
 image:image,
-category:category,
-date:new Date()
+category:category
 
 });
-
 
 alert("Product Added Successfully");
 
