@@ -2,91 +2,49 @@
 <html>
 <head>
 
-<title>MS Uma Tiles Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin</title>
 
-<style>
-
-body{
-font-family:Poppins;
-background:#f4f6f9;
-padding:40px;
-}
-
-.box{
-max-width:500px;
-margin:auto;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-}
-
-input,select{
-width:100%;
-padding:12px;
-margin-bottom:15px;
-border:1px solid #ccc;
-border-radius:6px;
-}
-
-button{
-padding:12px;
-width:100%;
-background:#d32f2f;
-color:white;
-border:none;
-border-radius:20px;
-cursor:pointer;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="box" id="loginBox">
+<section>
 
 <h2>Admin Login</h2>
 
 <input id="email" placeholder="Email">
-
 <input id="password" type="password" placeholder="Password">
 
-<button onclick="login()">Login</button>
+<button id="loginBtn">Login</button>
 
-</div>
-
-
-<div class="box" id="adminPanel" style="display:none">
+<div id="panel" style="display:none">
 
 <h2>Add Product</h2>
 
-<input id="name" placeholder="Product Name">
-
+<input id="name" placeholder="Name">
 <input id="price" placeholder="Price">
-
 <input id="image" placeholder="Image URL">
 
 <select id="category">
-
-<option value="Tiles">Tiles</option>
-<option value="Pipes">Pipes</option>
-<option value="Motors">Motors</option>
-<option value="Taps">Taps</option>
-
+<option>Tiles</option>
+<option>Pipes</option>
+<option>Motors</option>
+<option>Taps</option>
 </select>
 
-<button onclick="addProduct()">Add Product</button>
+<button id="addBtn">Add Product</button>
 
 </div>
 
+</section>
 
 <script type="module">
 
-import { db, auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 import { signInWithEmailAndPassword }
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -94,56 +52,46 @@ from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { addDoc, collection }
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+const loginBtn = document.getElementById("loginBtn");
+const addBtn = document.getElementById("addBtn");
 
-window.login = async function(){
-
-const email=document.getElementById("email").value;
-
-const password=document.getElementById("password").value;
+loginBtn.onclick = async () => {
 
 try{
 
-await signInWithEmailAndPassword(auth,email,password);
+await signInWithEmailAndPassword(
+auth,
+document.getElementById("email").value,
+document.getElementById("password").value
+);
 
-document.getElementById("loginBox").style.display="none";
+document.getElementById("panel").style.display="block";
 
-document.getElementById("adminPanel").style.display="block";
-
+}catch{
+alert("Login Failed");
 }
 
-catch{
+};
 
-alert("Wrong login");
+addBtn.onclick = async () => {
 
-}
-
-}
-
-
-
-window.addProduct = async function(){
-
-const name=document.getElementById("name").value;
-
-const price=document.getElementById("price").value;
-
-const image=document.getElementById("image").value;
-
-const category=document.getElementById("category").value;
-
+try{
 
 await addDoc(collection(db,"products"),{
-
-name:name,
-price:price,
-image:image,
-category:category
-
+name:document.getElementById("name").value,
+price:document.getElementById("price").value,
+image:document.getElementById("image").value,
+category:document.getElementById("category").value
 });
 
-alert("Product Added Successfully");
+alert("Added Successfully");
 
+}catch(e){
+alert("Error adding product");
+console.log(e);
 }
+
+};
 
 </script>
 

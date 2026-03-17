@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
-<title>Products | MS Uma Tiles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Products</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -14,65 +13,65 @@
 <body>
 
 <nav>
-
-<a href="index.html">Home</a>
-<a href="products.html">Products</a>
-
+<h2>Products</h2>
+<a href="index.html">Back</a>
 </nav>
 
-<h2 style="text-align:center">Our Products</h2>
+<section>
+
+<input id="search" placeholder="Search...">
 
 <select id="filter">
-
 <option value="all">All</option>
 <option value="Tiles">Tiles</option>
 <option value="Pipes">Pipes</option>
 <option value="Motors">Motors</option>
 <option value="Taps">Taps</option>
-
 </select>
 
 <div id="productList" class="products"></div>
 
+</section>
+
 <script type="module">
 
 import { db } from "./firebase.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-import { collection,getDocs }
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const list = document.getElementById("productList");
 
+async function loadProducts(){
 
-const list=document.getElementById("productList");
+try{
 
-const snapshot=await getDocs(collection(db,"products"));
+const snapshot = await getDocs(collection(db,"products"));
+
+list.innerHTML="";
 
 snapshot.forEach(doc=>{
+const p = doc.data();
 
-const p=doc.data();
-
-list.innerHTML+=`
-
+list.innerHTML += `
 <div class="card">
-
 <img src="${p.image}">
-
 <h3>${p.name}</h3>
-
 <p>₹${p.price}</p>
-
 <p>${p.category}</p>
-
-<a href="https://wa.me/919862011506?text=I want to order ${p.name}">
-
-<button>Order on WhatsApp</button>
-
+<a href="https://wa.me/919862011506?text=I want ${p.name}">
+<button>Order</button>
 </a>
-
 </div>
-
 `;
 
 });
+
+}catch(e){
+console.log(e);
+}
+
+}
+
+loadProducts();
 
 </script>
 
