@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Login</title>
+</head>
+
+<body>
+
+<h2>Login</h2>
+
+<input type="email" id="email" placeholder="Email"><br><br>
+<input type="password" id="password" placeholder="Password"><br><br>
+
+<button onclick="login()">Login</button>
+<button onclick="signup()">Sign Up</button>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword }
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDl2itMcZuynH-oIS0Jn_fDnMSd-ZdP-So",
+    authDomain: "ms-uma-tiles.firebaseapp.com",
+    projectId: "ms-uma-tiles",
+    storageBucket: "ms-uma-tiles.firebasestorage.app",
+    messagingSenderId: "103744240101",
+    appId: "1:103744240101:web:785e968d6904f79731970c"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// LOGIN
+window.login = function(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+signInWithEmailAndPassword(auth,email,password)
+.then(()=>{
+alert("Login Successful");
+window.location.href = "cart.html";
+})
+.catch(()=>alert("Wrong login"));
+
+}
+
+// SIGNUP
+window.signup = function(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+createUserWithEmailAndPassword(auth,email,password)
+.then(()=>{
+alert("Account Created");
+})
+.catch(()=>alert("Error creating account"));
+
+}
+
+</script>
+
+</body>
+</html>

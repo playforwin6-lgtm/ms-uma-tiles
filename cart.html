@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart</title>
+</head>
+
+<body>
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<button onclick="placeOrder()">Place Order</button>
+
+<!-- Firebase + Cart Script -->
+<script type="module">
+
+// 🔥 IMPORT FIREBASE
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// 🔥 YOUR FIREBASE CONFIG (PUT YOUR REAL VALUES)
+const firebaseConfig = {
+apiKey: "AIzaSyDl2itMcZuynH-oIS0Jn_fDnMSd-ZdP-So",
+    authDomain: "ms-uma-tiles.firebaseapp.com",
+    projectId: "ms-uma-tiles",
+    storageBucket: "ms-uma-tiles.firebasestorage.app",
+    messagingSenderId: "103744240101",
+    appId: "1:103744240101:web:785e968d6904f79731970c"
+};
+
+// 🔥 INIT FIREBASE
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 🛒 LOAD CART
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const div = document.getElementById("cartItems");
+
+cart.forEach(item=>{
+div.innerHTML += `<p>${item.name} - ₹${item.price}</p>`;
+});
+
+// 🛒 PLACE ORDER (SAVE TO FIRESTORE)
+window.placeOrder = async function(){
+
+if(cart.length === 0){
+alert("Cart is empty");
+return;
+}
+
+await addDoc(collection(db,"orders"),{
+items: cart,
+status: "New",
+time: new Date()
+});
+
+alert("Order Placed Successfully!");
+
+localStorage.removeItem("cart");
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>

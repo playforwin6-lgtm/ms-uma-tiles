@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Orders</title>
+</head>
+
+<body>
+
+<h2>My Orders</h2>
+
+<div id="ordersList"></div>
+
+<script type="module">
+
+// 🔥 IMPORT FIREBASE
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// 🔥 YOUR CONFIG (same as cart.html)
+const firebaseConfig = {
+apiKey: "AIzaSyDl2itMcZuynH-oIS0Jn_fDnMSd-ZdP-So",
+    authDomain: "ms-uma-tiles.firebaseapp.com",
+    projectId: "ms-uma-tiles",
+    storageBucket: "ms-uma-tiles.firebasestorage.app",
+    messagingSenderId: "103744240101",
+    appId: "1:103744240101:web:785e968d6904f79731970c"
+};
+
+// 🔥 INIT
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 📦 LOAD ORDERS
+const div = document.getElementById("ordersList");
+
+const snapshot = await getDocs(collection(db,"orders"));
+
+if(snapshot.empty){
+div.innerHTML = "<p>No orders found</p>";
+}
+
+snapshot.forEach(doc=>{
+
+let data = doc.data();
+
+div.innerHTML += `
+<div style="border:1px solid #ccc;padding:10px;margin:10px">
+<b>Status:</b> ${data.status}<br><br>
+
+<b>Items:</b><br>
+${data.items.map(i=> i.name + " - ₹" + i.price).join("<br>")}
+
+<br><br>
+</div>
+`;
+
+});
+
+</script>
+
+</body>
+</html>
